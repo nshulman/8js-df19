@@ -1,0 +1,23 @@
+<template>
+    <div class="slds-p-around_small">
+        <lightning-button-stateful class="exec"
+                                   label-when-off="Executive Sponsors"
+                                   label-when-on="Executive Sponsors"
+                                   icon-name-when-off="utility:add"
+                                   icon-name-when-on="utility:check"
+                                   icon-name-when-hover="utility:close"
+                                   selected={roles.exec} variant=""
+                                   onclick={handleRoleClick}>
+        </lightning-button-stateful>
+        &nbsp;
+        <lightning-button-stateful class="decisionmaker"
+                                   label-when-off="Decision Makers"
+                                   label-when-on="Decision Makers"
+                                   icon-name-when-off="utility:add"
+                                   icon-name-when-on="utility:check"
+                                   icon-name-when-hover="utility:close"
+                                   selected={roles.decisionmaker} variant=""
+                                   onclick={handleRoleClick}>
+        </lightning-button-stateful>
+    </div>
+</template>
