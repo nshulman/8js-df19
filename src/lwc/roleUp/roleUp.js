@@ -5,11 +5,9 @@ export default class RoleUp extends LightningElement {
     @api recordId;
 
     handleRoleChange(event) {
-        console.log('handling change' + JSON.stringify(event.detail));
+        //let rf = document.getElementById("oppsByRole");
         let rf = this.template.querySelector("c-opps-by-role");
-
         rf.roles = event.detail;
-        console.log('recordId = ' + this.recordId);
     }
 
 }
