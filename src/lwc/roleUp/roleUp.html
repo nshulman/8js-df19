@@ -1,8 +1,9 @@
 <template>
     <lightning-card title={title}>
         <c-role-filter onchange={handleRoleChange} >
+            <h1>This is awesome</h1>
         </c-role-filter>
-        <c-opps-by-role roles={roles} rec-id={recordId} onchange={handleDataChange}></c-opps-by-role>
+        <c-opps-by-role id="oppsByRole" roles={roles} rec-id={recordId} onchange={handleDataChange}></c-opps-by-role>
     </lightning-card>
 </template>
 

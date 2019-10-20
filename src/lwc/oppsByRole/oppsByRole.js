@@ -55,6 +55,7 @@ export default class OppsByRole extends LightningElement {
 
                 //Raise event with role values
                 console.log('raising event w ' + this.data.length);
+
                 const changeEvent = new CustomEvent('change', {detail: this.data.length});
                 this.dispatchEvent(changeEvent);
 
@@ -66,12 +67,16 @@ export default class OppsByRole extends LightningElement {
     handleAdd() {
         // 1. Spread Operator - push does not update in LWC
         console.log('A New Row Has been Pushed onto the @tracked data Array');
-        const dummyRow = {"Contact.Name":"Alice Greene","Opportunity.StageName":"Negotiation/Review"};
-        this.data.push(dummyRow);
-        //this.data = [...this.data,dummyRow];
+        const dummyRow = {"Opportunity.Name":"Extra Opportunity",
+            "Contact.Name":"Alice Greene", "Opportunity.Amount":1,
+            "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
+            "Opportunity.StageName":"Negotiation/Review"};
+        //this.data.push(dummyRow);
+        this.data = [...this.data, dummyRow];
+
     }
 
     async connectedCallback() {
-        console.log('connected: ' + this.recId);
+        console.log('connected: ');
     }
 }
