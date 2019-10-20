@@ -4,7 +4,8 @@
 
 import {LightningElement,track,api} from 'lwc';
 import getContactList from '@salesforce/apex/OppContactRoleController.getContactList';
-import { flatten } from 'c/lwcUtils';
+// 3. Import/Export
+import { flatten } from 'c/jsUtils';
 
 const columns = [
     {label:"Opportunity",fieldName:"Opportunity.Name",initialWidth:350},
@@ -41,28 +42,36 @@ export default class OppsByRole extends LightningElement {
                     const role = results[i]["Role"];
                     if (this._roles.exec && role === "Executive Sponsor") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        //resultData.push(results[i]);
+                        // resultData.push(results[i]);
                         resultData.push(flatten(results[i]));
                     }
                     if (this._roles.decisionmaker && role === "Decision Maker") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        //resultData.push(results[i]);
+                        // resultData.push(results[i]);
                         resultData.push(flatten(results[i]));
                     }
                 }
-                // 1. Spread Operator: No data showing from same array reference
-                //this.data = [...this.data];
                 this.data = resultData;
+
+                //Raise event with role values
+                console.log('raising event w ' + this.data.length);
+                const changeEvent = new CustomEvent('change', {detail: this.data.length});
+                this.dispatchEvent(changeEvent);
+
             }).catch(error => {
                 console.log('could not get contacts');
             })
     }
 
     handleAdd() {
-        console.log('addPush');
-        const dummyRow = {"Opportunity.StageName":"Negotiation/Review"};
+        // 1. Spread Operator - push does not update in LWC
+        console.log('A New Row Has been Pushed onto the @tracked data Array');
+        const dummyRow = {"Contact.Name":"Alice Greene","Opportunity.StageName":"Negotiation/Review"};
         this.data.push(dummyRow);
         //this.data = [...this.data,dummyRow];
     }
 
+    async connectedCallback() {
+        console.log('connected: ' + this.recId);
+    }
 }

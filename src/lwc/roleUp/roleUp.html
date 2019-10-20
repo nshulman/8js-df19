@@ -1,8 +1,8 @@
 <template>
-    <lightning-card title="Opportunities and Key Contacts">
-        <c-role-filter onchange={handleRoleChange}>
+    <lightning-card title={title}>
+        <c-role-filter onchange={handleRoleChange} >
         </c-role-filter>
-        <c-opps-by-role roles={roles} rec-id={recordId}></c-opps-by-role>
+        <c-opps-by-role roles={roles} rec-id={recordId} onchange={handleDataChange}></c-opps-by-role>
     </lightning-card>
 </template>
 
