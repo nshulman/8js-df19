@@ -1,6 +1,6 @@
 /**
  * Flattens nested results from Apex for data table.
- * @return {String[]} Array with flat results
+ * @return {String[]} Array with flattened results
  */
 export function flatten(obj,prefix=[],current={}) {
     // From StackOverflow: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objects
@@ -15,9 +15,16 @@ export function flatten(obj,prefix=[],current={}) {
     return current;
 }
 
-function favoriteBand() {
-    let band = 'Daft Punk';
-    console.log(`My favorite band is ${band}`);
+function favoriteBands() {
+    let firstBand = 'Daft Punk';
+    const secondBand = 'Phantogram';
+    console.log(`My favorite bands are ${firstBand}
+        and ${secondBand}`);
+    // My favorite bands are Daft Punk
+    //         and Phantogram
 }
+
+
+
 
 

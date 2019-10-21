@@ -3,8 +3,8 @@
  */
 
 import {LightningElement,track,api} from 'lwc';
+
 import getContactList from '@salesforce/apex/OppContactRoleController.getContactList';
-// 3. Import/Export
 import { flatten } from 'c/jsUtils';
 
 const columns = [
@@ -42,13 +42,13 @@ export default class OppsByRole extends LightningElement {
                     const role = results[i]["Role"];
                     if (this._roles.exec && role === "Executive Sponsor") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        // resultData.push(results[i]);
-                        resultData.push(flatten(results[i]));
+                        resultData.push(results[i]);
+                        // resultData.push(flatten(results[i]));
                     }
                     if (this._roles.decisionmaker && role === "Decision Maker") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        // resultData.push(results[i]);
-                        resultData.push(flatten(results[i]));
+                        resultData.push(results[i]);
+                        // resultData.push(flatten(results[i]));
                     }
                 }
                 this.data = resultData;
@@ -67,13 +67,13 @@ export default class OppsByRole extends LightningElement {
     handleAdd() {
         // 1. Spread Operator - push does not update in LWC
         console.log('A New Row Has been Pushed onto the @tracked data Array');
-        const dummyRow = {"Opportunity.Name":"Extra Opportunity",
+
+        const newRow = {"Opportunity.Name":"Extra Opportunity",
             "Contact.Name":"Alice Greene", "Opportunity.Amount":1,
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
             "Opportunity.StageName":"Negotiation/Review"};
-        //this.data.push(dummyRow);
-        this.data = [...this.data, dummyRow];
-
+        this.data.push(newRow);
+        //this.data = [...this.data, newRow];
     }
 
     async connectedCallback() {
