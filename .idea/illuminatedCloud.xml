@@ -4,10 +4,10 @@
     <option name="connections">
       <list>
         <IlluminatedCloudConnection>
-          <option name="connectionName" value="DF19 Demo" />
-          <option name="connectionType" value="MDAPI" />
+          <option name="connectionName" value="8js" />
+          <option name="connectionType" value="OAUTH" />
           <option name="defaultModuleName" value="DF19 Demo" />
-          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/DF19_Demo/OfflineSymbolTable.zip" />
+          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/8js/OfflineSymbolTable.zip" />
         </IlluminatedCloudConnection>
       </list>
     </option>

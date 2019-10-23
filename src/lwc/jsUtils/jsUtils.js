@@ -22,9 +22,8 @@ function favoriteBands() {
         and ${secondBand}`);
     // My favorite bands are Daft Punk
     //         and Phantogram
+
+
 }
-
-
-
 
 

@@ -73,7 +73,7 @@ export default class OppsByRole extends LightningElement {
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
             "Opportunity.StageName":"Negotiation/Review"};
         this.data.push(newRow);
-        //this.data = [...this.data, newRow];
+        // this.data = [...this.data, newRow];
     }
 
     async connectedCallback() {
