@@ -1,10 +1,9 @@
 <template>
-
-
     <lightning-card title={title}>
         <c-role-filter onchange={handleRoleChange} >
+            <!-- SLOTS -->
             <!-- Any HTML here goes into the slot on child component -->
-            <p>Be sure to call the executive sponsors every <em>two weeks</em> and decision makers every <strong>day</strong></p>
+<!--            <p>Be sure to call the executive sponsors every <em>two weeks</em> and decision makers every <strong>day</strong></p>-->
         </c-role-filter>
         <c-opps-by-role roles={roles} rec-id={recordId}
                         onchange={handleDataChange}></c-opps-by-role>

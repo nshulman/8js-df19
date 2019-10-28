@@ -12,9 +12,9 @@ export default class RoleUp extends LightningElement {
         // then set the roles @api value (public property)
 
         try {
-
-            // let roleFilter = document.getElementById("oppsByRole");
-            let roleFilter = this.template.querySelector("c-opps-by-role");
+            // QUERYSELECTOR vs. DOCUMENT.GETELEMENTBYID
+            let roleFilter = document.getElementById("oppsByRole");
+            // let roleFilter = this.template.querySelector("c-opps-by-role");
             roleFilter.roles = event.detail;
 
         } catch (e) {
@@ -25,6 +25,7 @@ export default class RoleUp extends LightningElement {
     handleDataChange(event) {
         console.log('dataChangeEvent');
         if (event.detail > 0) {
+            // STRING INTERPOLATION / LET / CONST
             this.title = this.baseTitle + ' (Results: ' + event.detail + ')';
             // let bt = this.baseTitle;
             // const count = event.detail;

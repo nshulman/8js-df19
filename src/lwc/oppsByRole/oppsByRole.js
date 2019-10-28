@@ -2,7 +2,7 @@ import {LightningElement,track,api} from 'lwc';
 
 import getContactList from '@salesforce/apex/OppContactRoleController.getContactList';
 import {NavigationMixin} from 'lightning/navigation';
-import { flatten } from 'c/jsUtils';
+// import { flatten } from 'c/jsUtils';
 
 const columns = [
     {type:"url",label:"Opportunity",fieldName:"OpportunityUrl",initialWidth:350,
@@ -32,7 +32,6 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     @track _roles;
 
     async getUrl(id) {
-        console.log('lol'+id);
         let promise = new Promise((resolve,reject) => {
             this[NavigationMixin.GenerateUrl]({
                 type: 'standard__recordPage',
@@ -41,7 +40,6 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
                     actionName: 'view',
                 },
             }).then(url => {
-                console.log('ugfr'+url);
                 resolve(url);
             });
         })
@@ -49,32 +47,29 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
         return result;
     }
 
-    async buildTable() {
+    buildTable() {
         getContactList({recId:this.recId})
             .then(async results => {
                 console.log('JSON Results' + JSON.stringify(results));
                 let resultData = [];
                 for (let i=0;i<results.length;i++) {
                     const role = results[i]["Role"];
-                    // let url = '#';
+                    let url = '#';
                     // let url = this.getUrl(results[i].OpportunityId);
-                    let url = await this.getUrl(results[i].OpportunityId);
-                    console.log(url);
-                    let res = {OpportunityUrl:url};
-                    Object.assign(res,results[i]);
+                    // let url = await this.getUrl(results[i].OpportunityId);
+                    console.log('URL for this row is: ' + url);
+                    let result = {OpportunityUrl:url};
+                    Object.assign(result,results[i]);
 
-                    //Object.defineProperty(res,'OpportunityUrl', {enumerable:true,configurable:true,writable:true});
-
-                    //res.OpportunityUrl=url;
                     if (this._roles.exec && role === "Executive Sponsor") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        // resultData.push(res);
-                        resultData.push(flatten(res));
+                        resultData.push(result);
+                        // resultData.push(flatten(result));
                     }
                     if (this._roles.decisionmaker && role === "Decision Maker") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        // resultData.push(results[i]);
-                        resultData.push(flatten(res));
+                        resultData.push(result);
+                        // resultData.push(flatten(result));
                     }
                 }
                 this.data = [...resultData];
@@ -82,6 +77,7 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
                 //Raise event with role values
                 console.log('raising event w ' + this.data.length);
 
+                // DISPATCHEVENT AND CUSTOMEVENT
                 const changeEvent = new CustomEvent('change', {detail: this.data.length});
                 this.dispatchEvent(changeEvent);
 
@@ -91,13 +87,16 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     }
 
     handleAdd() {
-        // 1. Spread Operator - push does not update in LWC
+
         console.log('A New Row Has been Pushed onto the @tracked data Array');
 
         const newRow = {"Opportunity.Name":"Extra Opportunity",
-            "Contact.Name":"Alice Greene", "Opportunity.Amount":1,
+            "Contact.Name":"Alice Greene", "Opportunity.Amount":100000,
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
-            "Opportunity.StageName":"Negotiation/Review"};
+            "Opportunity.StageName":"Negotiation/Review","OpportunityId":"0063k00000x7l7mAAA",
+        "OpportunityUrl":"http://www.salesforce.com"};
+
+        // SPREAD NOTATION
         this.data.push(newRow);
         // this.data = [...this.data, newRow];
     }

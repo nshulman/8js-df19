@@ -8,9 +8,10 @@ export default class RoleFilter extends LightningElement {
         this.roles[event.target.className] = !this.roles[event.target.className];
         event.target.variant = this.roles[event.target.className] ? "brand" : "";
 
-        //Raise event with role values
-        const changeEvent = new CustomEvent('change', {detail: this.roles});
-        this.dispatchEvent(changeEvent);
+        // DISPATCHEVENT AND CUSTOMEVENT
+        // Raise event with role values
+        // const changeEvent = new CustomEvent('change', {detail: this.roles});
+        // this.dispatchEvent(changeEvent);
     }
 
 }
