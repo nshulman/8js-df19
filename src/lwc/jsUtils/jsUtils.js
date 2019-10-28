@@ -14,16 +14,3 @@ export function flatten(obj,prefix=[],current={}) {
     }
     return current;
 }
-
-function favoriteBands() {
-    let firstBand = 'Daft Punk';
-    const secondBand = 'Phantogram';
-    console.log(`My favorite bands are ${firstBand}
-        and ${secondBand}`);
-    // My favorite bands are Daft Punk
-    //         and Phantogram
-
-
-}
-
-

@@ -1,14 +1,12 @@
-/**
- * Created by Nathan on 10/18/2019.
- */
-
 import {LightningElement,track,api} from 'lwc';
 
 import getContactList from '@salesforce/apex/OppContactRoleController.getContactList';
+import {NavigationMixin} from 'lightning/navigation';
 import { flatten } from 'c/jsUtils';
 
 const columns = [
-    {label:"Opportunity",fieldName:"Opportunity.Name",initialWidth:350},
+    {type:"url",label:"Opportunity",fieldName:"OpportunityUrl",initialWidth:350,
+        typeAttributes:{label: {fieldName: "Opportunity.Name"}}},
     {label:"Amount",fieldName:"Opportunity.Amount",type:"currency",initialWidth:150},
     {label:"Stage",fieldName:"Opportunity.StageName"},
     {label:"Contact",fieldName:"Contact.Name"},
@@ -16,7 +14,7 @@ const columns = [
     {label:"Phone",fieldName:"Contact.Phone"},
 ];
 
-export default class OppsByRole extends LightningElement {
+export default class OppsByRole extends NavigationMixin(LightningElement) {
     @track data=[];
     @track columns=columns;
     @api recId;
@@ -33,25 +31,53 @@ export default class OppsByRole extends LightningElement {
     }
     @track _roles;
 
-    buildTable() {
+    async getUrl(id) {
+        console.log('lol'+id);
+        let promise = new Promise((resolve,reject) => {
+            this[NavigationMixin.GenerateUrl]({
+                type: 'standard__recordPage',
+                attributes: {
+                    recordId: id,
+                    actionName: 'view',
+                },
+            }).then(url => {
+                console.log('ugfr'+url);
+                resolve(url);
+            });
+        })
+        let result = await promise;
+        return result;
+    }
+
+    async buildTable() {
         getContactList({recId:this.recId})
-            .then(results => {
+            .then(async results => {
                 console.log('JSON Results' + JSON.stringify(results));
                 let resultData = [];
                 for (let i=0;i<results.length;i++) {
                     const role = results[i]["Role"];
+                    // let url = '#';
+                    // let url = this.getUrl(results[i].OpportunityId);
+                    let url = await this.getUrl(results[i].OpportunityId);
+                    console.log(url);
+                    let res = {OpportunityUrl:url};
+                    Object.assign(res,results[i]);
+
+                    //Object.defineProperty(res,'OpportunityUrl', {enumerable:true,configurable:true,writable:true});
+
+                    //res.OpportunityUrl=url;
                     if (this._roles.exec && role === "Executive Sponsor") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        resultData.push(results[i]);
-                        // resultData.push(flatten(results[i]));
+                        // resultData.push(res);
+                        resultData.push(flatten(res));
                     }
                     if (this._roles.decisionmaker && role === "Decision Maker") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        resultData.push(results[i]);
-                        // resultData.push(flatten(results[i]));
+                        // resultData.push(results[i]);
+                        resultData.push(flatten(res));
                     }
                 }
-                this.data = resultData;
+                this.data = [...resultData];
 
                 //Raise event with role values
                 console.log('raising event w ' + this.data.length);
@@ -60,7 +86,7 @@ export default class OppsByRole extends LightningElement {
                 this.dispatchEvent(changeEvent);
 
             }).catch(error => {
-                console.log('could not get contacts');
+                console.log('could not get contacts: ' + error.message);
             })
     }
 

@@ -1,13 +1,12 @@
 <template>
 
-    {band}
 
     <lightning-card title={title}>
         <c-role-filter onchange={handleRoleChange} >
             <!-- Any HTML here goes into the slot on child component -->
+            <p>Be sure to call the executive sponsors every <em>two weeks</em> and decision makers every <strong>day</strong></p>
         </c-role-filter>
-        <c-opps-by-role id="oppsByRole"
-                        roles={roles} rec-id={recordId}
+        <c-opps-by-role roles={roles} rec-id={recordId}
                         onchange={handleDataChange}></c-opps-by-role>
     </lightning-card>
 </template>
