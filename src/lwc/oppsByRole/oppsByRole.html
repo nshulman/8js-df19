@@ -1,4 +1,3 @@
-<!-- Opps By Role -->
 <template>
     <div class="slds-p-around_small">
         <lightning-datatable key-field="id"
@@ -7,8 +6,10 @@
                              data={data}>
         </lightning-datatable>
         <div class="slds-p-around_small">
-            <lightning-button-icon alternative-text="add" icon-name="utility:add" onclick={handleAdd}>
+            <lightning-button-icon alternative-text="add"
+                                   icon-name="utility:add" onclick={handleAdd}>
             </lightning-button-icon>
         </div>
     </div>
+    {helloWorld}
 </template>

@@ -1,8 +1,7 @@
 import {LightningElement,track,api} from 'lwc';
-
 import getContactList from '@salesforce/apex/OppContactRoleController.getContactList';
 import {NavigationMixin} from 'lightning/navigation';
-// import { flatten } from 'c/jsUtils';
+import { flatten } from 'c/jsUtils';
 
 const columns = [
     {type:"url",label:"Opportunity",fieldName:"OpportunityUrl",initialWidth:350,
@@ -30,6 +29,7 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
         }
     }
     @track _roles;
+    @api helloWorld;
 
     async getUrl(id) {
         let promise = new Promise((resolve,reject) => {
@@ -63,13 +63,13 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
 
                     if (this._roles.exec && role === "Executive Sponsor") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        resultData.push(result);
-                        // resultData.push(flatten(result));
+                        // resultData.push(result);
+                        resultData.push(flatten(result));
                     }
                     if (this._roles.decisionmaker && role === "Decision Maker") {
                         // 2 & 3. Dot notation not working.  Use an import to flatten.
-                        resultData.push(result);
-                        // resultData.push(flatten(result));
+                        // resultData.push(result);
+                        resultData.push(flatten(result));
                     }
                 }
                 this.data = [...resultData];
@@ -94,11 +94,14 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
             "Contact.Name":"Alice Greene", "Opportunity.Amount":100000,
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
             "Opportunity.StageName":"Negotiation/Review","OpportunityId":"0063k00000x7l7mAAA",
-        "OpportunityUrl":"http://www.salesforce.com"};
+        "OpportunityUrl":"#"};
 
         // SPREAD NOTATION
         this.data.push(newRow);
-        // this.data = [...this.data, newRow];
+        // let newArray = this.data;
+        // newArray.push(newRow);
+        // this.data = newArray.slice();
+        //this.data = [...this.data, newRow];
     }
 
     async connectedCallback() {

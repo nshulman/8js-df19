@@ -1,8 +1,7 @@
-import {LightningElement,track} from 'lwc';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import {LightningElement} from 'lwc';
 
 export default class RoleFilter extends LightningElement {
-    @track roles = {"exec":false,"decisionmaker":false};
+    roles = {"exec":false,"decisionmaker":false};
 
     handleRoleClick(event) {
         this.roles[event.target.className] = !this.roles[event.target.className];
@@ -10,8 +9,8 @@ export default class RoleFilter extends LightningElement {
 
         // DISPATCHEVENT AND CUSTOMEVENT
         // Raise event with role values
-        // const changeEvent = new CustomEvent('change', {detail: this.roles});
-        // this.dispatchEvent(changeEvent);
+        const changeEvent = new CustomEvent('change', {detail: this.roles});
+        this.dispatchEvent(changeEvent);
     }
 
 }

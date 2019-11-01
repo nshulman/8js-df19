@@ -1261,6 +1261,14 @@
                       <option name="entries">
                         <list>
                           <MetadataEntry>
+                            <option name="name" value="greeting" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="howdy" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="lwcUtils" />
                             <option name="selected" value="true" />
                           </MetadataEntry>

@@ -1,21 +1,25 @@
 import {LightningElement,track,api} from 'lwc';
 
 export default class RoleUp extends LightningElement {
-    @track roles = {};
-    @track band = '';
+    baseTitle = "Opportunities and Key Contacts";
+    @track selectedRoles = {};
     @track title = this.baseTitle;
     @api recordId;
-    baseTitle = "Opportunities and Key Contacts";
+    band = '';
 
     handleRoleChange(event) {
         // The role has been changed, so we need to find the Opps By Role Control
         // then set the roles @api value (public property)
 
+        let greeting = this.template.querySelector("c-greeting");
+        greeting.localGreeting = "Howdy Y'all";
+
         try {
             // QUERYSELECTOR vs. DOCUMENT.GETELEMENTBYID
-            let roleFilter = document.getElementById("oppsByRole");
-            // let roleFilter = this.template.querySelector("c-opps-by-role");
-            roleFilter.roles = event.detail;
+            //let roleFilter = document.getElementById("oppsByRole");
+            let oppsByRole = this.template.querySelector("c-opps-by-role");
+            oppsByRole.selectedRoles = event.detail;
+            //oppsByRole.helloWorld = 'Howdy';
 
         } catch (e) {
             alert('Error setting roleFilter property: ' + e.message);
@@ -27,9 +31,9 @@ export default class RoleUp extends LightningElement {
         if (event.detail > 0) {
             // STRING INTERPOLATION / LET / CONST
             this.title = this.baseTitle + ' (Results: ' + event.detail + ')';
-            // let bt = this.baseTitle;
-            // const count = event.detail;
-            // this.title = `${bt} (Results: ${count})`;
+            // let base = this.baseTitle;
+            // const resCount = event.detail;
+            // this.title = `${base} (Results: ${count})`;
         } else {
             this.title = this.baseTitle;
         }
@@ -37,6 +41,10 @@ export default class RoleUp extends LightningElement {
 
 
     async connectedCallback() {
+
+
+
+
         function samples() {
 
             let nathansPromise = new Promise(function(resolve,reject) {
