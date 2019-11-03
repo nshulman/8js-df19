@@ -11,15 +11,15 @@ export default class RoleUp extends LightningElement {
         // The role has been changed, so we need to find the Opps By Role Control
         // then set the roles @api value (public property)
 
-        let greeting = this.template.querySelector("c-greeting");
-        greeting.localGreeting = "Howdy Y'all";
+        // let greeting = this.template.querySelector("c-greeting");
+        // greeting.localGreeting = "Howdy Y'all";
 
         try {
             // QUERYSELECTOR vs. DOCUMENT.GETELEMENTBYID
             //let roleFilter = document.getElementById("oppsByRole");
             let oppsByRole = this.template.querySelector("c-opps-by-role");
+            console.log('About to select roles');
             oppsByRole.selectedRoles = event.detail;
-            //oppsByRole.helloWorld = 'Howdy';
 
         } catch (e) {
             alert('Error setting roleFilter property: ' + e.message);
@@ -30,10 +30,10 @@ export default class RoleUp extends LightningElement {
         console.log('dataChangeEvent');
         if (event.detail > 0) {
             // STRING INTERPOLATION / LET / CONST
-            this.title = this.baseTitle + ' (Results: ' + event.detail + ')';
-            // let base = this.baseTitle;
-            // const resCount = event.detail;
-            // this.title = `${base} (Results: ${count})`;
+            // this.title = this.baseTitle + ' (Results: ' + event.detail + ')';
+            let base = this.baseTitle;
+            const resCount = event.detail;
+            this.title = `${base} (Results: ${count})`;
         } else {
             this.title = this.baseTitle;
         }

@@ -18,10 +18,10 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     @track columns=columns;
     @api recId;
     @api
-    get roles() {
+    get selectedRoles() {
         return this._roles;
     };
-    set roles(value) {
+    set selectedRoles(value) {
         if (value) {
             console.log('recId' + this.recId);
             this._roles = value;
@@ -97,11 +97,11 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
         "OpportunityUrl":"#"};
 
         // SPREAD NOTATION
-        this.data.push(newRow);
+        // this.data.push(newRow);
         // let newArray = this.data;
         // newArray.push(newRow);
         // this.data = newArray.slice();
-        //this.data = [...this.data, newRow];
+        this.data = [...this.data, newRow];
     }
 
     async connectedCallback() {
