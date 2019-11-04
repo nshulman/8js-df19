@@ -1,4 +1,8 @@
 <template>
-        <p>When in: <slot name="locale"></slot></p>
-        <p>We Say: <slot name="localGreeting"></slot></p>
+        <lightning-card title="Your Local Greeting">
+                <div class="slds-p-around_small">
+                        <p>When in: <slot name="locale"></slot></p>
+                        <p>We Say: <slot name="localGreeting"></slot></p>
+                </div>
+        </lightning-card>
 </template>

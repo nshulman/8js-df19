@@ -1265,6 +1265,10 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="greetingContainer" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="howdy" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
