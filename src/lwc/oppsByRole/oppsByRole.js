@@ -54,9 +54,9 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
                 let resultData = [];
                 for (let i=0;i<results.length;i++) {
                     const role = results[i]["Role"];
-                    let url = '#';
+                    // let url = '#';
                     // let url = this.getUrl(results[i].OpportunityId);
-                    // let url = await this.getUrl(results[i].OpportunityId);
+                    let url = await this.getUrl(results[i].OpportunityId);
                     console.log('URL for this row is: ' + url);
                     let result = {OpportunityUrl:url};
                     Object.assign(result,results[i]);
@@ -90,18 +90,18 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
 
         console.log('A New Row Has been Pushed onto the @tracked data Array');
 
-        const newRow = {"Opportunity.Name":"Extra Opportunity",
+        const newRow = {"Opportunity.Name":"New Opportunity",
             "Contact.Name":"Alice Greene", "Opportunity.Amount":100000,
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
             "Opportunity.StageName":"Negotiation/Review","OpportunityId":"0063k00000x7l7mAAA",
         "OpportunityUrl":"#"};
 
         // SPREAD NOTATION
-        // this.data.push(newRow);
+        this.data.push(newRow);
         // let newArray = this.data;
         // newArray.push(newRow);
         // this.data = newArray.slice();
-        this.data = [...this.data, newRow];
+        //this.data = [...this.data, newRow];
     }
 
     async connectedCallback() {

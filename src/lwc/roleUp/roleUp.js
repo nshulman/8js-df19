@@ -15,9 +15,12 @@ export default class RoleUp extends LightningElement {
         // greeting.localGreeting = "Howdy Y'all";
 
         try {
+
+
             // QUERYSELECTOR vs. DOCUMENT.GETELEMENTBYID
             //let roleFilter = document.getElementById("oppsByRole");
             let oppsByRole = this.template.querySelector("c-opps-by-role");
+            oppsByRole.recId = this.recordId;
             console.log('About to select roles');
             oppsByRole.selectedRoles = event.detail;
 
@@ -28,12 +31,13 @@ export default class RoleUp extends LightningElement {
 
     handleDataChange(event) {
         console.log('dataChangeEvent');
+        console.log(JSON.stringify(event.detail));
         if (event.detail > 0) {
             // STRING INTERPOLATION / LET / CONST
             // this.title = this.baseTitle + ' (Results: ' + event.detail + ')';
             let base = this.baseTitle;
             const resCount = event.detail;
-            this.title = `${base} (Results: ${count})`;
+            this.title = `${base} (Results: ${resCount})`;
         } else {
             this.title = this.baseTitle;
         }
