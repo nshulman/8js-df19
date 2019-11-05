@@ -5,9 +5,11 @@
 import {LightningElement} from 'lwc';
 
 export default class GreetingContainer extends LightningElement {
+
     handleClick(event) {
+
+        // Get the c-greeting component and set the localGreeting public property
         let greeting = this.template.querySelector("c-greeting");
-        console.log(greeting);
         greeting.localGreeting = "Howdy Y'all";
     }
 
