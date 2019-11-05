@@ -45,12 +45,7 @@ export default class RoleUp extends LightningElement {
 
 
     async connectedCallback() {
-
-
-
-
         function samples() {
-
             let nathansPromise = new Promise(function(resolve,reject) {
                 setTimeout(function () {
                     resolve('You will learn something');
