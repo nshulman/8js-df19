@@ -12,7 +12,8 @@ export default class RoleUp extends LightningElement {
         // then set the roles @api value (public property)
         try {
             // QUERYSELECTOR vs. DOCUMENT.GETELEMENTBYID
-            //let roleFilter = document.getElementById("oppsByRole");
+            // document.getElementById will NOT work.
+            // let roleFilter = document.getElementById("oppsByRole");
             let oppsByRole = this.template.querySelector("c-opps-by-role");
             oppsByRole.recId = this.recordId;
             console.log('About to select roles');
