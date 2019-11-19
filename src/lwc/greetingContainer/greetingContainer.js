@@ -1,28 +1,24 @@
-/**
- * Created by Nathan on 11/3/2019.
- */
-
 import {LightningElement,track} from 'lwc';
 
 export default class GreetingContainer extends LightningElement {
 
     @track
-    localeCountry = 'Unknown';
+    localeName = 'Unknown';
     @track
     localeGreeting = 'Unknown';
 
     handleClick(event) {
         switch (event.target.label) {
             case 'CH':
-                this.localeCountry = 'Switzerland';
+                this.localeName = 'Switzerland';
                 this.localeGreeting = 'Gruezi';
                 break;
             case 'PH':
-                this.localeCountry = 'Philippines';
+                this.localeName = 'Philippines';
                 this.localeGreeting = 'Kumusta Ka';
                 break;
             case 'TX':
-                this.localeCountry = 'Texas';
+                this.localeName = 'Texas';
                 this.localeGreeting = 'Howdy';
                 break;
         }

@@ -1,6 +1,5 @@
 <!-- Greeting Container -->
 <template>
-
     <lightning-card title="Greeting - Slot (Multi)">
         <lightning-button label="CH" class="slds-m-left_x-small"
                           onclick={handleClick}></lightning-button>
@@ -9,10 +8,11 @@
         <lightning-button label="TX" class="slds-m-left_x-small"
                           onclick={handleClick}></lightning-button>
         <c-greeting-slot-multi>
+
             <span></span>
-            <span slot="locale">{localeCountry}</span>
+            <span slot="locale">{localeName}</span>
             <span slot="localGreeting"><strong>{localeGreeting}</strong></span>
+
         </c-greeting-slot-multi>
     </lightning-card>
-
 </template>

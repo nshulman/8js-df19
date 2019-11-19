@@ -31,6 +31,8 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     @track _roles;
     @api helloWorld;
 
+    // *************************************
+    // ASYNC AWAIT - Async function
     async getUrl(id) {
         let promise = new Promise((resolve,reject) => {
             this[NavigationMixin.GenerateUrl]({
@@ -54,8 +56,9 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
                 let resultData = [];
                 for (let i=0;i<results.length;i++) {
                     const role = results[i]["Role"];
-                    // let url = '#';
-                    //let url = this.getUrl(results[i].OpportunityId);
+                    // ***********************************************
+                    // ASYNC AWAIT - getURL CALL
+                    // let url = this.getUrl(results[i].OpportunityId);
                     let url = await this.getUrl(results[i].OpportunityId);
                     console.log('URL for this row is: ' + url);
                     let result = {OpportunityUrl:url};
@@ -94,10 +97,11 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
             "Opportunity.StageName":"Negotiation/Review","OpportunityId":"0063k00000x7l7mAAA",
         "OpportunityUrl":"#"};
 
-        // SPREAD NOTATION
+        // ************************************
+        // SPREAD NOTATION - Add New Row
         this.data.push(newRow);
 
-        //SPREAD FIX
+        // SPREAD FIX
         //this.data = [...this.data, newRow];
 
         // Alternative way to copy/recreate array
