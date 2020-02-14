@@ -32,7 +32,7 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     @api helloWorld;
 
     async getUrl(id) {
-        let promise = new Promise((resolve,reject) => {
+        let promise = new Promise((resolve) => {
             this[NavigationMixin.GenerateUrl]({
                 type: 'standard__recordPage',
                 attributes: {
@@ -42,9 +42,8 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
             }).then(url => {
                 resolve(url);
             });
-        })
-        let result = await promise;
-        return result;
+        });
+        return await promise;
     }
 
     buildTable() {
@@ -55,7 +54,7 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
                 for (let i=0;i<results.length;i++) {
                     const role = results[i]["Role"];
                     // let url = '#';
-                    // let url = this.getUrl(results[i].OpportunityId);
+                    //let url = this.getUrl(results[i].OpportunityId);
                     let url = await this.getUrl(results[i].OpportunityId);
                     console.log('URL for this row is: ' + url);
                     let result = {OpportunityUrl:url};
@@ -97,11 +96,11 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
         "OpportunityUrl":"#"};
 
         // SPREAD NOTATION
-        this.data.push(newRow);
+        //this.data.push(newRow);
         // let newArray = this.data;
         // newArray.push(newRow);
         // this.data = newArray.slice();
-        //this.data = [...this.data, newRow];
+        this.data = [...this.data, newRow];
     }
 
     async connectedCallback() {
