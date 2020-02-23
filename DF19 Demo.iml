@@ -29,6 +29,10 @@
                       <option name="entries">
                         <list>
                           <MetadataEntry>
+                            <option name="name" value="FeaturedItemController" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="OppContactRoleController" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
@@ -1286,6 +1290,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="oppsByRole" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="pricelist" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

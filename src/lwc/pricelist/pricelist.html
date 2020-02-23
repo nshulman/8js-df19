@@ -1,0 +1,17 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <template for:each={prices} for:item="price">
+            <div class="slds-col" key={price.Id}>
+                <ul class="price">
+                    <li class={price.divClass}>{price.Name}</li>
+                    <li class="grey">$ {price.UnitPrice} / year</li>
+                    <li>{price.Product2.Storage__c} GB Storage</li>
+                    <li>{price.Product2.Emails__c} Emails</li>
+                    <li>{price.Product2.Domains__c} Domains</li>
+                    <li>{price.Product2.Bandwidth_in_GB__c}GB Bandwidth</li>
+                    <li class="grey"><a href={price.Id} class="button">Sign Up</a></li>
+                </ul>
+            </div>
+        </template>
+    </div>
+</template>

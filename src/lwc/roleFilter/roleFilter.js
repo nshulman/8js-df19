@@ -9,7 +9,7 @@ export default class RoleFilter extends LightningElement {
 
         // DISPATCHEVENT AND CUSTOMEVENT
         // roleFilter.js: Raise event with role values
-        const changeEvent = new CustomEvent('change', {detail: this.roles});
+        const changeEvent = new CustomEvent('foo', {detail: this.roles});
          this.dispatchEvent(changeEvent);
     }
 
