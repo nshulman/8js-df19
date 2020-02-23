@@ -7,7 +7,6 @@
           <option name="connectionName" value="8js" />
           <option name="connectionType" value="OAUTH" />
           <option name="defaultModuleName" value="DF19 Demo" />
-          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/8js/OfflineSymbolTable.zip" />
         </IlluminatedCloudConnection>
       </list>
     </option>
