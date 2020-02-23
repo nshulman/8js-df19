@@ -31,6 +31,8 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     @track _roles;
     @api helloWorld;
 
+    // *************************************
+    // ASYNC AWAIT - Async function
     async getUrl(id) {
         let promise = new Promise((resolve) => {
             this[NavigationMixin.GenerateUrl]({
@@ -53,8 +55,9 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
                 let resultData = [];
                 for (let i=0;i<results.length;i++) {
                     const role = results[i]["Role"];
-                    // let url = '#';
-                    //let url = this.getUrl(results[i].OpportunityId);
+                    // ***********************************************
+                    // ASYNC AWAIT - getURL CALL
+                    // let url = this.getUrl(results[i].OpportunityId);
                     let url = await this.getUrl(results[i].OpportunityId);
                     console.log('URL for this row is: ' + url);
                     let result = {OpportunityUrl:url};
@@ -86,9 +89,7 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     }
 
     handleAdd() {
-
         console.log('A New Row Has been Pushed onto the @tracked data Array');
-
         const newRow = {"Opportunity.Name":"New Opportunity",
             "Contact.Name":"Alice Greene", "Opportunity.Amount":100000,
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",

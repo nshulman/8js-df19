@@ -1,25 +1,18 @@
 <!-- Greeting Container -->
 <template>
-
-    <lightning-card title="Greeting Component">
-        <lightning-button label="Update Greeting" class="slds-m-left_x-small"
+    <lightning-card title="Greeting - Slot (Multi)">
+        <lightning-button label="CH" class="slds-m-left_x-small"
                           onclick={handleClick}></lightning-button>
-        <c-greeting></c-greeting>
+        <lightning-button label="PH" class="slds-m-left_x-small"
+                          onclick={handleClick}></lightning-button>
+        <lightning-button label="TX" class="slds-m-left_x-small"
+                          onclick={handleClick}></lightning-button>
+        <c-greeting-slot-multi>
+
+            <span></span>
+            <span slot="locale">{localeName}</span>
+            <span slot="localGreeting"><strong>{localeGreeting}</strong></span>
+
+        </c-greeting-slot-multi>
     </lightning-card>
-
-<!--    <lightning-card title="Greeting - Slot">-->
-<!--        <c-greeting-slot>-->
-<!--            <p>Well, <strong>Howdy Y'all</strong></p>-->
-<!--        </c-greeting-slot>-->
-<!--    </lightning-card>-->
-
-
-<!--    <lightning-card title="Greeting - Slot (Multi)">-->
-<!--        <c-greeting-slot-multi>-->
-<!--            &lt;!&ndash;        <span></span>&ndash;&gt;-->
-<!--            <span slot="locale">Texas</span>-->
-<!--            <span slot="localGreeting"><strong>Howdy Y'all</strong></span>-->
-<!--        </c-greeting-slot-multi>-->
-<!--    </lightning-card>-->
-
 </template>

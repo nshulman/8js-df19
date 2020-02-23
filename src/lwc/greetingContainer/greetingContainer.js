@@ -1,16 +1,27 @@
-/**
- * Created by Nathan on 11/3/2019.
- */
-
-import {LightningElement} from 'lwc';
+import {LightningElement,track} from 'lwc';
 
 export default class GreetingContainer extends LightningElement {
 
-    handleClick(event) {
+    @track
+    localeName = 'Unknown';
+    @track
+    localeGreeting = 'Unknown';
 
-        // Get the c-greeting component and set the localGreeting public property
-        let greeting = this.template.querySelector("c-greeting");
-        greeting.localGreeting = "Howdy Y'all";
+    handleClick(event) {
+        switch (event.target.label) {
+            case 'CH':
+                this.localeName = 'Switzerland';
+                this.localeGreeting = 'Gruezi';
+                break;
+            case 'PH':
+                this.localeName = 'Philippines';
+                this.localeGreeting = 'Kumusta Ka';
+                break;
+            case 'TX':
+                this.localeName = 'Texas';
+                this.localeGreeting = 'Howdy';
+                break;
+        }
     }
 
 
