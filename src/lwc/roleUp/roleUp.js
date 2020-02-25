@@ -11,6 +11,7 @@ export default class RoleUp extends LightningElement {
         // The role has been changed, so we need to find the Opps By Role Control
         // then set the roles @api value (public property)
         try {
+            // ****************************************
             // QUERYSELECTOR vs. DOCUMENT.GETELEMENTBYID
             // document.getElementById will NOT work.
             // let roleFilter = document.getElementById("oppsByRole");
