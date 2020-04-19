@@ -1,0 +1,22 @@
+<template>
+
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <div class="numbertext">{slideLength}</div>
+            <img src={currentImageUrl} style="width:100%" alt="slideshow"/>
+            <div class="text">{currentCaption}</div>
+        </div>
+        <a class="prev" onclick={minusSlides}>&#10094;</a>
+        <a class="next" onclick={plusSlides}>&#10095;</a>
+    </div>
+
+    <br />
+
+    <div style="text-align:center">
+        <template for:each={dots} for:item="dot">
+            <span class={dot.dotClass} onclick={handleDotPress} key={dot.key} data-item={dot.key}></span>
+        </template>
+    </div>
+
+
+</template>

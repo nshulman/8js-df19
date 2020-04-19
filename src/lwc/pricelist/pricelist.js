@@ -1,4 +1,4 @@
-import {LightningElement,track} from 'lwc';
+import {LightningElement,track,api} from 'lwc';
 import getFeaturedItems from '@salesforce/apex/FeaturedItemController.getFeaturedItems';
 
 export default class Pricelist extends LightningElement {
@@ -8,13 +8,10 @@ export default class Pricelist extends LightningElement {
     connectedCallback() {
         getFeaturedItems()
             .then(results => {
-                this.prices = [];
                 results.forEach( x => {
                     let price = {...x};
                     price.divClass = (x.Product2.Highlight__c === true) ? 'highlight' : 'header';
-                    console.log(price.divClass);
                     this.prices.push(price);
-                    console.log(price);
                 });
                 console.log('DATA:' + JSON.stringify(this.prices));
             })
