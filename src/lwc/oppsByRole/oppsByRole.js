@@ -89,7 +89,7 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
     }
 
     handleAdd() {
-        console.log('A New Row Has been Pushed onto the @tracked data Array');
+
         const newRow = {"Opportunity.Name":"New Opportunity",
             "Contact.Name":"Alice Greene", "Opportunity.Amount":100000,
             "Role":"Executive Sponsor","Contact.Phone":"512-555-1212",
@@ -97,11 +97,13 @@ export default class OppsByRole extends NavigationMixin(LightningElement) {
         "OpportunityUrl":"#"};
 
         // SPREAD NOTATION
-        //this.data.push(newRow);
+        this.data.push(newRow);
         // let newArray = this.data;
         // newArray.push(newRow);
         // this.data = newArray.slice();
-        this.data = [...this.data, newRow];
+        //this.data = [...this.data, newRow];
+
+        console.log(`A New Row Has been Pushed onto the @tracked data Array (Length: ${this.data.length})`,this.data);
     }
 
     async connectedCallback() {
