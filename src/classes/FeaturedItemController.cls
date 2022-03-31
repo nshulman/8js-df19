@@ -1,7 +1,7 @@
 public with sharing class FeaturedItemController {
     private static List<String> bad() {
         
-        for (Integer i; i<102; i++) {
+        for (Integer i=0; i<102; i++) {
             List<Account> accs = [SELECT Id FROM Account LIMIT 1];   
         }
         return null;
