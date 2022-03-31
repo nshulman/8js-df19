@@ -1,4 +1,11 @@
 public with sharing class FeaturedItemController {
+    private static List<String> bad() {
+        
+        for (Integer i; i<102; i++) {
+            List<Account> accs = [SELECT Id FROM Account LIMIT 1];   
+        }
+        return null;
+    }
     @AuraEnabled(Cacheable=true)
     public static List<PricebookEntry> getFeaturedItems() {
         List<PricebookEntry> result = [SELECT Id, Name, UnitPrice,
